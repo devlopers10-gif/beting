@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        width: 100%;
+      
+        display: flex;
+  flex-direction: column;
+ 
+  height: 100vh; 
+
+    }
+    ul{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+          
+       
+          list-style-type: none;
+         
+        
+    }
+    button {
+  background: #4e8cff;
+  padding: 12px 25px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  
+}
+
+/* When pressed (mobile registers as tap) */
+button:hover {
+  background: #8aaefc; /* dull color */
+}
+    #pl1bidp{
+        margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 300px ;
+  margin-left: 300px ;
+    }
+    #amPL1{
+  margin-left: 50%;
+position: absolute;
+bottom: 200px;
+    }
+    #amPL2{
+  margin-left: 50%;
+position: absolute;
+bottom:  200px; 
+   }
+   #player1,#player2{
+    padding: 50px;
+   }
+   #playername1,#playername2{
+padding-top: 10px;
+   }
+   #player1{
+    transform: rotate(180deg);
+    margin-left: 60px;
+   }
+    #player1{
+
+    }
+   /* ------------ RESPONSIVE FIXES ------------ */
+
+/* Tablet screens */
+@media (max-width: 900px) {
+
+  ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  ul li {
+    flex: 1 1 40%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #pl1bidp {
+    margin-left: 50px;
+    margin-right: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  #player1, #player2 {
+    padding: 20px;
+  }
+
+  #amPL1, #amPL2 {
+    position: static;
+    margin: 10px 0;
+  }
+}
+
+
+/* Mobile screens */
+@media (max-width: 600px) {
+
+  ul li {
+    flex: 1 1 100%;
+  }
+
+  #pl1bidp {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+    gap: 15px;
+    text-align: center;
+  }
+
+  #container {
+    padding: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+</style>
+<body>
+    <div id="container">
+        <button onclick="location.reload()">Refresh Page</button>
+        <div id="player1">
+          
+            <am id="amPL1">0</am>
+            <ul id="pl1">
+              
+
+     <li><button onclick="PLayAudio()" class="pl1button" id="10p1">BET 10</button></li>         
+     <li><button onclick="PLayAudio()" class="pl1button" id="20p1">BET 20</button></li>
+     <li><button onclick="PLayAudio()" class="pl1button" id="50p1">BET 50</button></li>
+     <li><button onclick="PLayAudio()" class="pl1button" id="100p1">BET 100</button></li>
+     <li><button onclick="PLayAudio()" class="pl1button" id="130p1">BET 130</button></li>
+     <li><button onclick="PLayAudio()" class="pl1button" id="Allp1"> ALL YOU HAVE</button></li>
+            </ul>
+            <div id="playern2">PLAYER 1</div>
+        </div>
+        <div id="pl1bidp">
+       <button id="pl2Sum">Player 2 WON</button> <pm id="pl2BID">0</pm>
+        <pm id="pl1BID">0</pm><button id="pl1Sum">Player 1 WON</button>
+        </div>
+        <div id="player2">
+             <ul id="pl2">
+    <li><button onclick="PLayAudio()"  class="pl2button" id="10p2">BET 10</button></li>         
+    <li><button onclick="PLayAudio()"  class="pl2button" id="20p2">BET 20</button></li>
+     <li><button onclick="PLayAudio()" class="pl2button" id="50p2">BET 50</button></li>
+     <li><button onclick="PLayAudio()" class="pl2button" id="100p2">BET 100</button></li>
+     <li><button onclick="PLayAudio()" class="pl2button" id="130p2">BET 130</button></li>
+     <li><button onclick="PLayAudio()" class="pl2button" id="Allp2"> ALL YOU HAVE</button></li>
+            </ul>
+            <am id="amPL2">0</am></div>
+            <div id="playern2">PLAYER 1</div>
+    </div>
+    <script>
+
+        let player1 = document.getElementById('player1');
+        let amPL1 = document.getElementById('amPL1');
+        let tenP1 = document.getElementById('10p1');
+        let tOp1 = document.getElementById('20p1');
+        let FOp1 = document.getElementById('50p1');
+        let HOp1 = document.getElementById('100p1');
+        let OTZp1 = document.getElementById('130p1');
+        let Allp1 = document.getElementById('Allp1');
+        let amPL2 = document.getElementById('amPL2');
+        let tenP2 = document.getElementById('10p2');
+        let tOp2 = document.getElementById('20p2');
+        let FOp2 = document.getElementById('50p2');
+        let HOp2 = document.getElementById('100p2');
+        let OTZp2 = document.getElementById('130p2');
+        let Allp2 = document.getElementById('Allp2');
+        let playern1 = document.getElementById('playern1');
+        let playern2 = document.getElementById('playern2');
+        let pl2BID = document.getElementById('pl2BID');
+        let pl2Sum = document.getElementById('pl2Sum');
+        let pl1Sum = document.getElementById('pl1Sum');
+        let pl1BID = document.getElementById('pl1BID');
+       
+        
+        let PLayAudio = () => {
+             let audio = new Audio("credit.mp3")
+             audio.play()
+        }
+        
+        let ado = () => {
+          let addeo = new Audio('wrong-47985.mp3')
+          addeo.play();
+
+        }
+         let blv = Number(prompt('How many rupees you want to play for'));
+        let player1BAlance = blv;
+        let player1Bid = 0;
+        function safeAdd(amount) {
+          
+  if (player1BAlance < amount){
+    alert('Player 1 dont have money')
+    ado()
+     return; 
+    }// 🚫 prevent over-bet/ 🚫 prevent over-bet
+
+  player1BAlance -= amount;   // money leaves balance
+  player1Bid += amount;      // money goes into bid
+
+  amPL1.innerText = `Amount You Have In Your Account ${player1BAlance}`;
+  pl1BID.innerText = `Your Bid Amount ${player1Bid}`;
+}
+
+        amPL1.innerText = `Amount You Have In Your Account ${player1BAlance}`
+        tenP1.addEventListener('click', () => safeAdd(10));
+tOp1.addEventListener('click', () => safeAdd(20));
+FOp1.addEventListener('click', () => safeAdd(50));
+HOp1.addEventListener('click', () => safeAdd(100));
+OTZp1.addEventListener('click', () => safeAdd(130));
+Allp1.addEventListener('click', () => safeAdd(player1BAlance));
+
+ let player2BAlance = blv;
+        let player2Bid = 0;
+        function safeAddpl2(amount) {
+          
+  if (player2BAlance < amount){
+    alert('Player 2 dont have money')
+    ado()  
+    
+       return; 
+    }// 🚫 prevent over-bet
+
+  player2BAlance -= amount;   // money leaves balance
+  player2Bid += amount;      // money goes into bid
+
+  amPL2.innerText = `Amount You Have In Your Account ${player2BAlance}`;
+  pl2BID.innerText = `Your Bid Amount ${player2Bid}`;
+}
+
+        amPL2.innerText = `Amount You Have In Your Account ${player2BAlance}`
+        tenP2.addEventListener('click', () => safeAddpl2(10));
+tOp2.addEventListener('click', () => safeAddpl2(20));
+FOp2.addEventListener('click', () => safeAddpl2(50));
+HOp2.addEventListener('click', () => safeAddpl2(100));
+OTZp2.addEventListener('click', () => safeAddpl2(130));
+Allp2.addEventListener('click', () => safeAddpl2(player2BAlance));
+        let adeo = () => {
+          let addeo = new Audio('goodresult-82807.mp3')
+          addeo.play();
+
+        }
+     pl2Sum.addEventListener('click', () => {
+      
+      let total = player2Bid + player1Bid + player2BAlance;
+      player2BAlance  = total;
+     amPL2.innerText = `Amount You Have In Your Account ${player2BAlance}`;
+     player2Bid = 0;
+     player1Bid = 0;
+     pl2BID.innerText = `Your Bid Amount ${player2Bid}`;
+     pl1BID.innerText = `Your Bid Amount ${player1Bid}`;
+     adeo()
+     alert("player 2 won")
+     })   
+     pl1Sum.addEventListener('click', () => {
+      
+      let total = player2Bid + player1Bid + player1BAlance;
+      player1BAlance  = total;
+     amPL1.innerText = `Amount You Have In Your Account ${player1BAlance}`;
+     player2Bid = 0;
+     player1Bid = 0;
+     pl2BID.innerText = `Your Bid Amount ${player2Bid}`;
+     pl1BID.innerText = `Your Bid Amount ${player1Bid}`;
+     adeo()
+     alert("player 1 won")
+     
+     })   
+     
+
+
+
+
+
+    </script>
+</body>
+</html>
